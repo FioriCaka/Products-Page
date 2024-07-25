@@ -27,14 +27,17 @@ header button {
     font-size: 16px;
 }
 
-header button:hover :first-of-type {
-    background-color: #42b748;
+header button:hover {
+    background-color: #105c13;
 }
-header button:hover :nth-of-type(2) {
-    background-color: #f30404;
+#delete-product-btn:hover  {
+    background-color: #990c0c;
 }
 
 main {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
     padding: 20px;
 }
 
@@ -51,7 +54,9 @@ main {
     margin-bottom: 15px;
     padding: 15px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.3em;
 }
 
 .product input[type="checkbox"] {
