@@ -1,0 +1,83 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header button {
+    background-color: #808080;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+header button:hover :first-of-type {
+    background-color: #42b748;
+}
+header button:hover :nth-of-type(2) {
+    background-color: #f30404;
+}
+
+main {
+    padding: 20px;
+}
+
+.delete-checkbox {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.product {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.product input[type="checkbox"] {
+    margin-right: 15px;
+}
+
+.product p {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+.product p:first-of-type {
+    font-weight: bold;
+}
+
+.product p:nth-of-type(4) {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.product p:nth-of-type(n+4) {
+    font-size: 14px;
+    color: #555;
+}
+
+.product p:nth-of-type(4) {
+    font-weight: bold;
+}

@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <h1>Add Product</h1>
+        <h1> Add Product</h1>
     </header>
     <main>
         <form id="product_form" method="post" action="save-products.php">

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/home-page.css">
 </head>
 <body>
     <header>
@@ -20,9 +21,9 @@
         while ($row = $stmt->fetch()) {
             echo '<div class="product">';
             echo '<input type="checkbox" class="delete-checkbox" data-id="' . $row['id'] . '">';
-            echo '<p>' . $row['sku'] . '</p>';
-            echo '<p>' . $row['name'] . '</p>';
-            echo '<p>' . $row['price'] . ' $</p>';
+            echo '<p>SKU:' . $row['sku'] . '</p>';
+            echo '<p>Name: ' . $row['name'] . '</p>';
+            echo '<p>Price: ' . $row['price'] . ' $</p>';
             if ($row['type'] == 'DVD') {
                 echo '<p>Size: ' . $row['size'] . ' MB</p>';
             } elseif ($row['type'] == 'Book') {
