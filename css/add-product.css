@@ -16,6 +16,9 @@ header {
     padding: 1rem 0;
     text-align: center;
     justify-content: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 main {
