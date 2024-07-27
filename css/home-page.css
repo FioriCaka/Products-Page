@@ -49,14 +49,18 @@ main {
 .product {
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 6px 6px 5px rgba(0, 255, 217, 0.1);
     margin-bottom: 15px;
     padding: 15px;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     gap: 0.3em;
+}
+
+.product-shadow {
+    box-shadow: 6px 6px 5px rgba(255, 0, 0, 0.1);
 }
 
 .product input[type="checkbox"] {
@@ -70,11 +74,6 @@ main {
 }
 
 .product p:first-of-type {
-    font-weight: bold;
-}
-
-.product p:nth-of-type(4) {
-    color: #007bff;
     font-weight: bold;
 }
 
