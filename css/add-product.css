@@ -17,7 +17,6 @@ header {
     text-align: center;
     justify-content: center;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
@@ -61,6 +60,7 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin: 5px 0;
 }
 
 button[type="button"] {
