@@ -5,10 +5,10 @@ require_once 'Product.php';
 class Book extends Product {
     private $weight;
 
-    public function __construct($sku, $name, $price, $weight) {
+    public function __construct($sku, $name, $price, $attributes) {
         parent::__construct($sku, $name, $price);
-        $this->setWeight($weight);
-        $this->type = 'Book';
+        $this->setWeight($attributes['weight']);
+
     }
 
     public function setWeight($weight) {
@@ -21,11 +21,12 @@ class Book extends Product {
 
     public function save($pdo) {
         $stmt = $pdo->prepare("INSERT INTO products (sku, name, price, type, weight) VALUES (?, ?, ?, ?, ?)");
-        $stmt->execute([$this->sku, $this->name, $this->price, $this->type, $this->weight]);
+        $stmt->execute([$this->getSku(), $this->getName(), $this->getPrice(), 'Book', $this->getWeight()]);
     }
 
-    public function getDetails() {
-        return "Weight: " . $this->weight . " KG";
+    public function display() {
+        parent::display();
+        echo '<p>Weight: ' . $this->getWeight() . ' KG</p>';
     }
 }
 ?>

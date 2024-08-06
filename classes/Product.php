@@ -4,7 +4,6 @@ abstract class Product {
     protected $sku;
     protected $name;
     protected $price;
-    protected $type;
 
     public function __construct($sku, $name, $price) {
         $this->setSku($sku);
@@ -38,6 +37,10 @@ abstract class Product {
 
     abstract public function save($pdo);
 
-    abstract public function getDetails();
+    public function display() {
+        echo '<p>SKU: ' . $this->getSku() . '</p>';
+        echo '<p>Name: ' . $this->getName() . '</p>';
+        echo '<p>Price: ' . $this->getPrice() . ' $</p>';
+    }
 }
 ?>

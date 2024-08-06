@@ -15,20 +15,31 @@
     <main>
         <?php
         require_once 'db.php';
+        require_once 'classes/Product.php';
+        require_once 'classes/DVD.php';
+        require_once 'classes/Book.php';
+        require_once 'classes/Furniture.php';
+        require_once 'classes/Product-Creator.php';
 
         $stmt = $pdo->query('SELECT * FROM products ORDER BY id');
         while ($row = $stmt->fetch()) {
             echo '<div class="product">';
             echo '<input type="checkbox" class="delete-checkbox" data-id="' . $row['id'] . '">';
-            echo '<p>SKU:' . $row['sku'] . '</p>';
-            echo '<p>Name: ' . $row['name'] . '</p>';
-            echo '<p>Price: ' . $row['price'] . ' $</p>';
-            if ($row['type'] == 'DVD') {
-                echo '<p>Size: ' . $row['size'] . ' MB</p>';
-            } elseif ($row['type'] == 'Book') {
-                echo '<p>Weight: ' . $row['weight'] . ' KG</p>';
-            } elseif ($row['type'] == 'Furniture') {
-                echo '<p>Dimensions: ' . $row['height'] . 'x' . $row['width'] . 'x' . $row['length'] . ' CM</p>';
+
+            $attributes = [
+                'size' => $row['size'] ?? null,
+                'weight' => $row['weight'] ?? null,
+                'height' => $row['height'] ?? null,
+                'width' => $row['width'] ?? null,
+                'length' => $row['length'] ?? null,
+            ];
+
+            try {
+                $product = ProductCreator::createProduct($row['type'], $row['sku'], $row['name'], $row['price'], $attributes);
+                $product->display();
+                
+            } catch (Exception $e) {
+                echo 'Error: ' . $e->getMessage();
             }
             echo '</div>';
         }

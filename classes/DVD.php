@@ -5,10 +5,10 @@ require_once 'Product.php';
 class DVD extends Product {
     private $size;
 
-    public function __construct($sku, $name, $price, $size) {
+    public function __construct($sku, $name, $price, $attributes) {
         parent::__construct($sku, $name, $price);
-        $this->setSize($size);
-        $this->type = 'DVD';
+        $this->setSize($attributes['size']);
+        
     }
 
     public function setSize($size) {
@@ -21,11 +21,12 @@ class DVD extends Product {
 
     public function save($pdo) {
         $stmt = $pdo->prepare("INSERT INTO products (sku, name, price, type, size) VALUES (?, ?, ?, ?, ?)");
-        $stmt->execute([$this->sku, $this->name, $this->price, $this->type, $this->size]);
+        $stmt->execute([$this->getSku(), $this->getName(), $this->getPrice(), 'DVD', $this->getSize()]);
     }
 
-    public function getDetails() {
-        return "Size: " . $this->size . " MB";
+    public function display() {
+        parent::display();
+        echo '<p>Size: ' . $this->getSize() . ' MB</p>';
     }
 }
 ?>

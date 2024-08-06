@@ -7,12 +7,11 @@ class Furniture extends Product {
     private $width;
     private $length;
 
-    public function __construct($sku, $name, $price, $height, $width, $length) {
+    public function __construct($sku, $name, $price, $attributes) {
         parent::__construct($sku, $name, $price);
-        $this->setHeight($height);
-        $this->setWidth($width);
-        $this->setLength($length);
-        $this->type = 'Furniture';
+        $this->setHeight($attributes['height']);
+        $this->setWidth($attributes['width']);
+        $this->setLength($attributes['length']);
     }
 
     public function setHeight($height) {
@@ -41,11 +40,12 @@ class Furniture extends Product {
 
     public function save($pdo) {
         $stmt = $pdo->prepare("INSERT INTO products (sku, name, price, type, height, width, length) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$this->sku, $this->name, $this->price, $this->type, $this->height, $this->width, $this->length]);
+        $stmt->execute([$this->getSku(), $this->getName(), $this->getPrice(), 'Furniture', $this->getHeight(), $this->getWidth(), $this->getLength()]);
     }
 
-    public function getDetails() {
-        return "Dimensions: " . $this->height . "x" . $this->width . "x" . $this->length . " CM";
+    public function display() {
+        parent::display();
+        echo '<p>Dimensions: ' . $this->getHeight() . 'x' . $this->getWidth() . 'x' . $this->getLength() . ' CM</p>';
     }
 }
 ?>

@@ -1,6 +1,7 @@
 <?php
 
 require_once 'db.php';
+require_once 'classes/Product-Creator.php';
 require_once 'classes/Product.php';
 require_once 'classes/DVD.php';
 require_once 'classes/Book.php';
@@ -27,41 +28,11 @@ try {
     echo 'Database error: ' . $e->getMessage();
     exit;
 }
-
-$product = null;
-
 try {
-    if ($type == 'DVD') {
-        if (!isset($_POST['size'])) {
-            echo 'Missing size for DVD';
-            exit;
-        }
-        $size = $_POST['size'];
-        $product = new DVD($sku, $name, $price, $size);
-    } elseif ($type == 'Book') {
-        if (!isset($_POST['weight'])) {
-            echo 'Missing weight for Book';
-            exit;
-        }
-        $weight = $_POST['weight'];
-        $product = new Book($sku, $name, $price, $weight);
-    } elseif ($type == 'Furniture') {
-        if (!isset($_POST['height'], $_POST['width'], $_POST['length'])) {
-            echo 'Missing dimensions for Furniture';
-            exit;
-        }
-        $height = $_POST['height'];
-        $width = $_POST['width'];
-        $length = $_POST['length'];
-        $product = new Furniture($sku, $name, $price, $height, $width, $length);
-    } else {
-        echo 'Invalid product type';
-        exit;
-    }
+    $attributes = $_POST;
+    $product = ProductCreator::createProduct($type, $sku, $name, $price, $attributes);
+    $product->save($pdo);
 
-    if ($product) {
-        $product->save($pdo);
-    }
 } catch (Exception $e) {
     echo 'Error: ' . $e->getMessage();
     exit;
