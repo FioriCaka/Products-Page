@@ -1,4 +1,5 @@
 
+//MASS DELETE JavaScript Handler
 document.getElementById('delete-product-btn').addEventListener('click', function() {
     const checkedBoxes = document.querySelectorAll('.delete-checkbox:checked');
     const ids = Array.from(checkedBoxes).map(box => box.getAttribute('data-id'));
@@ -28,6 +29,8 @@ document.getElementById('delete-product-btn').addEventListener('click', function
     }
 });
 
+
+//Shadow switcher for the checked products
 document.addEventListener('DOMContentLoaded', function() {
     const checkboxes = document.querySelectorAll('.delete-checkbox');
 

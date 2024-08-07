@@ -1,4 +1,6 @@
 
+//Live switcher of the form based on the option that is choosen
+
 document.addEventListener('DOMContentLoaded', function() {
     const typeSpecificFields = {
         'DVD': function() {

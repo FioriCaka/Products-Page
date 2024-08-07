@@ -3,10 +3,8 @@ RewriteRule ^add-product$ add-product.php [L]
 RewriteRule ^save_product$ save_product.php [L]
 
 
-# Allow existing files and directories
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
-# Block direct access to any PHP file
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteRule \.php$ - [F,L]
+RewriteEngine On
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:CF-Visitor} !{"scheme":"https"}
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
